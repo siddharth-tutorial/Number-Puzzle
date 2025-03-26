@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    #puzzle-container {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin: 0 auto;
+      width: 315px;
+      height: 315px;
+    }
+
+    .tile {
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .empty {
+      background-color: #f0f0f0;
+      cursor: default;
+    }
+  </style>
+  <body>
+    <h1>Number Slide Puzzle</h1>
+    <div id="puzzle-container">
+    
+      <input class="tile" type="button" value="1" id="bt1" onclick="clickfun('bt1')"/>
+      <input class="tile" type="button" value="3" id="bt2" onclick="clickfun('bt2')"/>
+      <input class="tile" type="button" value="5" id="bt3" onclick="clickfun('bt3')"/>
+      <input class="tile" type="button" value="2" id="bt4" onclick="clickfun('bt4')"/>
+      <input class="tile" type="button" value="4" id="bt5" onclick="clickfun('bt5')"/>
+      <input class="tile" type="button" value="6" id="bt6" onclick="clickfun('bt6')"/>
+     
+      <input class="tile"type="button"value="7"   id="bt7" onclick="clickfun('bt7')"/>
+      
+      <input class="tile" type="button"value="8"id="bt8" onclick="clickfun('bt8')"  />
+      <input class="tile empty"  type="button" value="" id="bt9" onclick="clickfun('bt9')" />
+  
+    </div>
+
+    <script>
+      function clickfun(id) {
+
+        var collection = document.getElementsByClassName("empty");
+
+        idVal = document.getElementById(id);
+
+        inVal = idVal.value;
+
+        if (collection[0].getAttribute("id") == "bt9" && (id == "bt6" || id == "bt8")) {
+          changeValue(collection);
+        }
+        else if(collection[0].getAttribute("id") == "bt8" && (id == "bt7" || id == "bt5" || id == "bt9")) {
+          changeValue(collection);
+        }
+        else if(collection[0].getAttribute("id") == "bt7" && (id == "bt4" || id == "bt8" )) {
+          changeValue(collection);
+        } else if(collection[0].getAttribute("id") == "bt6" && (id == "bt5" || id == "bt9" || id == "bt3")) {
+          changeValue(collection);
+        } else if(collection[0].getAttribute("id") == "bt5" && (id == "bt2" || id == "bt4" || id == "bt6" || id =="bt8")) {
+          changeValue(collection);
+        } else if(collection[0].getAttribute("id") == "bt4" && (id == "bt1" || id == "bt5" || id == "bt7")) {
+          changeValue(collection);
+        } else if(collection[0].getAttribute("id") == "bt3" && (id == "bt2" || id == "bt6")) {
+          changeValue(collection);
+        } else if(collection[0].getAttribute("id") == "bt2" && (id == "bt1" || id == "bt3" || id == "bt5")) {
+          changeValue(collection);
+        } else if(collection[0].getAttribute("id") == "bt1" && (id == "bt4" || id == "bt2")) {
+          changeValue(collection);
+        }
+      }
+
+      function changeValue(collection) {
+        idVal.value = "";
+        collection[0].value  = inVal;
+        collection[0].classList.remove('empty');
+        idVal.classList.add("empty");
+
+      }
+
+      
+    </script>
+  </body>
+</html>
